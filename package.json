@@ -1,0 +1,33 @@
+{
+  "name": "typescript-graphql",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
+    "start": "node dist/server",
+    "clean": "rm -rf dist",
+    "build": "npm -s run clean && npm -s run generate && tsc",
+    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/schema"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.30.3",
+    "apollo-server": "3.3.0",
+    "graphql": "^15.5.3",
+    "graphql-scalars": "1.10.1",
+    "nexus": "^1.1.0",
+    "nexus-prisma": "^0.33.0"
+  },
+  "devDependencies": {
+    "@types/node": "14.17.15",
+    "prisma": "^2.30.3",
+    "ts-node": "10.2.1",
+    "ts-node-dev": "1.1.8",
+    "typescript": "^4.4.2"
+  }
+}
