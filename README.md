@@ -15,7 +15,7 @@ This **tutorial** shows how to implement **cursor-based pagination** in `GraphQL
 - [Introduction to pagination](#introduction-to-pagination)
 - [Tutorial](#tutorial)
 - [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
+- [Getting started](#getting-started)
 - [Bonus: Add an orderBy operator to your query](#bonus-add-an-orderby-operator-to-your-query)
 - [Next steps](#next-steps)
 
@@ -23,7 +23,7 @@ This **tutorial** shows how to implement **cursor-based pagination** in `GraphQL
 
 Most modern applications today use pagination of some sort to display data in subsets. These subsets are quicker to fetch, improving the user experience and lowering resource consumption.
 
-The two most common ways of doing pagination are limit/offset and cursor-based pagination. 
+The most common ways of doing pagination are limit/offset and cursor-based pagination. 
 
 1. **Limit/offset**: Uses a `limit` to determine the number of items to fetch, and `offset` to define the number of items to skip. Different frameworks and languages use the same concept. Instead of `limit` and `offset`, `Prisma` uses `take` and `skip`.
 
@@ -43,13 +43,13 @@ The two most common ways of doing pagination are limit/offset and cursor-based p
 
 ## Prerequisites
 
-This tutorial assumes you have a working copy of `GraphQL` with `Apollo`, `Nexus-Prisma` and `Prisma` Framework. Medium level knowledge in those technologies is recommended but not essential.
+This tutorial assumes you have a working copy of `GraphQL` with `Apollo Server`, `Nexus-Prisma` and `Prisma` Framework. Medium level knowledge in those technologies is recommended but not essential.
 
 We have created a *Pokemon inspired* base template that works out of the box. It contains the required database, dependencies and migrations.
 
 <details><summary><strong>Follow these steps</strong> to get the base repository up and running.</summary>
 
-### 1. Download GraphQL base files
+### 1. Download the `GraphQL base files
 
 Download the `GraphQL` base files created for this tutorial:
 
@@ -78,11 +78,11 @@ Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.
 npx prisma db seed --preview-feature
 ```
 
-### 3. Start the `GraphQL` server
+### 3. Start the `Apollo Server`
 
 Almost there!
 
-The following command will launch your `Apollo server`. It will also create the `schema.graphql` and `src/generated/nexus.ts` files.
+The following command will launch your `Apollo Server`. It will also create the `schema.graphql` and `src/generated/nexus.ts` files.
 
 Run this command:
 
@@ -90,7 +90,7 @@ Run this command:
 npm run dev
 ```
 
-Well done! Now you can navigate to `http://localhost:4000` in your browser to explore the API of your `Apollo server`.
+Well done! Now you can navigate to `http://localhost:4000` in your browser to explore the API of your `Apollo Server`.
 
 </details>
 
@@ -147,7 +147,7 @@ const Query = queryType({
 ...
 ```
 
-### 3. Add arguments to the `getAllPokemons` query
+### 3. Add the arguments to the `getAllPokemons` query
 
 Cursor-base pagination needs the following arguments to operate: 
 - **Cursor**: Pokemon ID that points to the start of the page.
@@ -269,7 +269,7 @@ const Query = queryType({
 
 ### 3. Run a query
 
-In the `Apollo` sandbox, run the following query:
+Head over to the `Apollo Sandbox`. Make sure `Apollo Server` is running and run the following query:
 
 ```graphql
 query Query($cursor: Int, $take: Int, $skip: Int, $orderBy: PokemonOrderByName) {
@@ -282,7 +282,7 @@ query Query($cursor: Int, $take: Int, $skip: Int, $orderBy: PokemonOrderByName) 
 }
 ```
 
-Don't forget to include the following arguments: 
+Don't forget to include the pagination arguments: 
 ```graphql
 {
   "cursor": 1,
@@ -293,7 +293,7 @@ Don't forget to include the following arguments:
 ```
 That's all!
 
-Now, you should see these results:
+You should see these results:
 ```json
 {
   "data": {
