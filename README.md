@@ -267,6 +267,60 @@ const Query = queryType({
 ...
 ```
 
+### 3. Run a query
+
+In the Apollo console, run the following query:
+
+```graphql
+query Query($cursor: Int, $take: Int, $skip: Int, $orderBy: PokemonOrderByName) {
+  getAllPokemons(cursor: $cursor, take: $take, skip: $skip, orderBy: $orderBy) {
+    id
+    name
+    hp
+    attack
+  }
+}
+```
+
+Don't forget to include the following arguments: 
+```graphql
+{
+  "cursor": 1,
+  "take": 3,
+  "skip": 1,
+  "orderBy": { "name": "asc" }
+}
+```
+That's all!
+
+Now, you should see these results:
+```json
+{
+  "data": {
+    "getAllPokemons": [
+      {
+        "id": 2,
+        "name": "Feraligatr",
+        "hp": 120,
+        "attack": 10
+      },
+      {
+        "id": 3,
+        "name": "Gengar Prime",
+        "hp": 130,
+        "attack": 25
+      },
+      {
+        "id": 4,
+        "name": "Sneasel",
+        "hp": 60,
+        "attack": 25
+      }
+    ]
+  }
+}
+```
+
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
