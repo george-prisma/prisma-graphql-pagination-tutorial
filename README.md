@@ -269,7 +269,7 @@ const Query = queryType({
 
 ### 3. Run a query
 
-In the Apollo console, run the following query:
+In the `Apollo` sandbox, run the following query:
 
 ```graphql
 query Query($cursor: Int, $take: Int, $skip: Int, $orderBy: PokemonOrderByName) {
