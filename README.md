@@ -35,7 +35,7 @@ The most common ways of doing pagination are limit/offset and cursor-based pagin
 
 ---
 **NOTE**
-`GraphQL` uses the same approach. The naming convention is slightly different: `first`, `offset` and `after` instead of `take`, `skip` and `cursor`. For more information visit [GraphQL Pagination](https://graphql.org/learn/pagination/).
+`GraphQL` uses the same approach. The naming convention is slightly different: `first`, `offset` and `after` instead of `take`, `skip` and `cursor`. For more information, visit [GraphQL Pagination](https://graphql.org/learn/pagination/).
 
 ---
 
@@ -43,7 +43,7 @@ The most common ways of doing pagination are limit/offset and cursor-based pagin
 
 ## Prerequisites
 
-This tutorial assumes you have a working copy of `GraphQL` with `Apollo Server`, `Nexus-Prisma` and `Prisma` Framework. Medium level knowledge in those technologies is recommended but not essential.
+This tutorial assumes you have a working copy of `GraphQL` with `Apollo Server`, `Nexus-Prisma` and `Prisma` framework. Medium level knowledge in those technologies is recommended but not essential.
 
 We have created a *Pokemon inspired* base template that works out of the box. It contains the required database, dependencies and migrations.
 
@@ -96,7 +96,7 @@ Well done! Now you can navigate to `http://localhost:4000` in your browser to ex
 
 ## Getting started
 
-Now that the base repository has a seeded `Pokemon` table, it's time to create a Nexus' `objectType` for the `GraphQL` query.
+It's time to create a Nexus' `objectType` for the `GraphQL` query. By now, you should have a `GraphQL` API and a seeded `Pokemon` table running in `Apollo Server` 
 
 ### 1. Create the `Pokemon` type
 
