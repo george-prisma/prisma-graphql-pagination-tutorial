@@ -1,4 +1,4 @@
-# Cursor-based pagination in Prisma and GraphQL.
+# Cursor-based pagination in Prisma and GraphQL
 
 This **tutorial** shows how to implement **cursor-based pagination** in `GraphQL` and `Prisma`. You will use the following stack:
 
