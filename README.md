@@ -21,23 +21,21 @@ This **tutorial** shows how to implement **cursor-based pagination** in `GraphQL
 
 ## Introduction to pagination 
 
-Most modern applications today use pagination of some sort to display data in subsets. 
-
-The data is retrieved in workable chunks that are quicker to fetch and present, improving the user experience and lowering the resouce consumption.
+Most modern applications today use pagination of some sort to display data in subsets. These subsets are quicker to fetch, improving the user experience and lowering resource consumption.
 
 The two most common ways of doing pagination are limit/offset and cursor-based pagination. 
 
-1. **Limit/offset**: uses a `limit` or `page size` to determine the number of items to retrieve, and an `offset` to mark the number of items to skip. Different frameworks and languages use the same concept. Instead of `limit` and `offset`, `Prisma` uses `take` and `skip`.
+1. **Limit/offset**: Uses a `limit` to determine the number of items to fetch, and `offset` to define the number of items to skip. Different frameworks and languages use the same concept. Instead of `limit` and `offset`, `Prisma` uses `take` and `skip`.
 
 ![Limit/Offset pagination example](img/offset.png "Limit/Offset pagination example")
 
-2. **Cursor-based**: uses a `cursor` to determine a pivotal point where the subset will start or finish. It uses a `page size` and the results will include items found before or after the `cursor` depending on the implementation. Instead of `limit`, `offset` and `cursor`, `Prisma` uses `take`, `skip` and `cursor`.
+2. **Cursor-based**: Uses a `cursor` to bookmark the start of the subset. It also uses a `limit`.  The results include items from before or after the `cursor` depending on the implementation. Instead of `limit`, `offset` and `cursor`, `Prisma` uses `take`, `skip` and `cursor`.
 
 ![Cursor-based pagination example](img/cursor-based.png "Cursor-based pagination example")
 
 ---
 **NOTE**
-Most frameworks/languages implement pagination the same way. `GraphQL` uses the same approach with a slightly different naming convention: `first`, `offset` and `after` instead of `take`, `skip` and `cursor`. For more info visit [GraphQL Pagination](https://graphql.org/learn/pagination/).
+`GraphQL` uses the same approach. The naming convention is slightly different: `first`, `offset` and `after` instead of `take`, `skip` and `cursor`. For more information visit [GraphQL Pagination](https://graphql.org/learn/pagination/).
 
 ---
 
@@ -45,15 +43,15 @@ Most frameworks/languages implement pagination the same way. `GraphQL` uses the 
 
 ## Prerequisites
 
-This tutorial assumes you have a working copy of GraphQL with Apollo, Nexus-prisma, Prisma Client and Prisma Migrate. Medium level knowledge in those technologies is recommended but not essential.
+This tutorial assumes you have a working copy of `GraphQL` with `Apollo`, `Nexus-Prisma` and `Prisma` Framework. Medium level knowledge in those technologies is recommended but not essential.
 
-We have created a *Pokemon inspired* base template that works out of the box. It contains the dependencies, database and migrations.
+We have created a *Pokemon inspired* base template that works out of the box. It contains the required database, dependencies and migrations.
 
-<details><summary><strong>Follow the these steps</strong> to get the base repository up and running.</summary>
+<details><summary><strong>Follow these steps</strong> to get the base repository up and running.</summary>
 
 ### 1. Download GraphQL base files
 
-Download the GraphQL base files created for this tutorial:
+Download the `GraphQL` base files created for this tutorial:
 
 ```
 curl -L https://github.com/george-prisma/graphql-base/archive/refs/tags/v1.0.0.tar.gz | tar -xz
@@ -80,11 +78,11 @@ Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.
 npx prisma db seed --preview-feature
 ```
 
-### 3. Start the GraphQL server
+### 3. Start the `GraphQL` server
 
 Almost there!
 
-The following command will launch your Apollo server, create the `schema.graphql` and the `src/generated/nexus.ts` file.
+The following command will launch your `Apollo server`. It will also create the `schema.graphql` and `src/generated/nexus.ts` files.
 
 Run this command:
 
@@ -92,19 +90,19 @@ Run this command:
 npm run dev
 ```
 
-Well done! Now you can navigate to `http://localhost:4000` in your browser to explore the API of your Apollo server.
+Well done! Now you can navigate to `http://localhost:4000` in your browser to explore the API of your `Apollo server`.
 
 </details>
 
 ## Getting started
 
-The base repository has a seeded `Pokemon` table data. Now it's time to create a Nexus' `objectType` for the GraphQL query.
+Now that the base repository has a seeded `Pokemon` table, it's time to create a Nexus' `objectType` for the `GraphQL` query.
 
 ### 1. Create the `Pokemon` type
 
-`Nexus-prisma` autogenerates the Nexus schema. This works in the same fashion as Prisma with the database schema generation. You can import it and use it from `nexus-prisma`.
+`Nexus-prisma` autogenerates the `Nexus` schema. It works in the same fashion as Prisma database schema generation. You can import it and use it from `nexus-prisma`.
 
-Create a `types` folder to contain your Nexus' `objectTypes`. This will help you ensure the structure remains tidy moving forward.
+Create a `types` folder to hold your Nexus' `objectTypes`. It will help you ensure the structure remains tidy moving forward.
 
 The file should look like this:
 
@@ -123,11 +121,11 @@ export default objectType({
 })
 ```
 
-### 2. Add `Pokemon` type and `Context` to the `schema.ts`
+### 2. Add the `Pokemon` type and `Context` to the `schema.ts`
 
 Now, you will need to import the `Pokemon` type and `Context`. The `Context` is a wrapper for the `Prisma Client` used by `Apollo Server`.
 
-You will also need to add a Nexus' `queryType` that replaces the **hello** query from the base template: 
+You will also need to add a Nexus' `queryType` to replace the **hello** query from the base template: 
 
 ```diff typescript:title=./src/schema.ts
 + import Pokemon from './types/Pokemon'
@@ -149,7 +147,7 @@ const Query = queryType({
 ...
 ```
 
-### 3. Add arguments to `getAllPokemons` query
+### 3. Add arguments to the `getAllPokemons` query
 
 Cursor-base pagination needs the following arguments to operate: 
 - **Cursor**: Pokemon ID that points to the start of the page.
@@ -158,9 +156,7 @@ Cursor-base pagination needs the following arguments to operate:
 
 These arguments will have the Nexus' `intArg` type.
 
-Finally, pass the arguments to `FindMany`. **Pay special attention to default values** and remember this tutorial or `nexus-prisma` aren’t production ready just yet. You can use the *?? notation* to set the default values.
- 
-The file should look like this: 
+Finally, pass the arguments to `FindMany`. **Pay special attention to default values** and remember this tutorial and `nexus-prisma` aren’t production-ready just yet. You can use the *?? notation* to set the default values.
 
 ```diff typescript:title=./src/schema.ts
 import Pokemon from './types/Pokemon'
@@ -197,17 +193,17 @@ const Query = queryType({
 ...
 ```
 
-## Bonus: Add ordering by field
+## Bonus: Add an `orderBy` operator to your query
 
 Everything looks great. Amazing work! 
 
-By now, you should have an example with pagination already working. To top off this lesson, you can also order the results by a field.
+By now, you should have an example with pagination working. To top off this lesson, you can also order the results by name.
 
-Prisma allows you to order results **descendingly** or **ascendingly**. In this final section, you will learn how to sort the `Pokemon` list by name.
+`Prisma` lets you order results in **ascending** or **descending** order. In this final section, you will learn how to sort the `Pokemon` list by name.
 
-### 1. Create `PokemonOrderByName` type
+### 1. Create the `PokemonOrderByName` type
 
-Just like you created the `Pokemon` type, you can create the `PokemonOrderByName` type. The `getAllPokemons` query in `schema.ts` will use this type as an argument for ordering the list before pagination.
+Just like you created the `Pokemon` type, create the `PokemonOrderByName` type. The `getAllPokemons` query in `schema.ts` will use this type as an argument for ordering the list before pagination.
 
 Create the following file:
 
@@ -229,7 +225,7 @@ export default inputObjectType({
 
 ### 2. Add the `orderBy` argument to the `getAllPokemons` query
 
-You are almost done. The only thing remaining is to add the `orderBy` argument to the `getAllPokemons` query in `schema.ts`.
+The last touch is adding the `orderBy` argument to the `getAllPokemons` query in `schema.ts`.
 
 ```diff typescript:title=./src/schema.ts
 import Pokemon from './types/Pokemon'
