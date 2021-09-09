@@ -2,12 +2,12 @@
 
 This **tutorial** shows how to implement **cursor-based pagination** in `GraphQL` and `Prisma`. You will use the following stack:
 
-- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database.
 - [**Apollo Server**](https://github.com/apollographql/apollo-server): HTTP server for GraphQL.  
 - [**GraphQL Nexus**](https://nexusjs.org/docs/): Schema generator for GraphQL.
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Database ORM.                  
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations.
 - [**Nexus-prisma**](https://nexus.prisma.io/usage): Nexus Schema generator.    
+- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database.
 
 
 ## Contents
@@ -16,7 +16,7 @@ This **tutorial** shows how to implement **cursor-based pagination** in `GraphQL
 - [Tutorial](#tutorial)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
-- [Bonus: Add ordering by field](#bonus-add-ordering-by-field)
+- [Bonus: Add an orderBy operator to your query](#bonus-add-an-orderby-operator-to-your-query)
 - [Next steps](#next-steps)
 
 ## Introduction to pagination 
