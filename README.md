@@ -49,7 +49,7 @@ We have created a *Pokemon inspired* base template that works out of the box. It
 
 <details><summary><strong>Follow these steps</strong> to get the base repository up and running.</summary>
 
-### 1. Download the `GraphQL base files
+### 1. Download the `GraphQL` base files
 
 Download the `GraphQL` base files created for this tutorial:
 
